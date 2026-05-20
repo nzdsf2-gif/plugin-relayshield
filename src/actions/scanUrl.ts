@@ -20,7 +20,7 @@ async function pollResult(
   for (let i = 0; i < MAX_POLLS; i++) {
     await new Promise((r) => setTimeout(r, POLL_INTERVAL_MS));
     const res = await apiGet<ScanVerdictResult>(config, `/result/${analysisId}`);
-    if (res.ok && res.data && res.data.verdict !== "pending" && res.data.status !== "pending") {
+    if (res.ok && res.data && res.data.verdict !== "pending") {
       return res.data;
     }
   }
