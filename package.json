@@ -1,0 +1,71 @@
+{
+  "name": "@relayshield/plugin-relayshield",
+  "version": "0.1.0",
+  "description": "RelayShield identity threat intelligence for ElizaOS agents — breach detection, SIM swap, domain lookalikes, wallet risk, URL/file malware scanning",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --dts --clean",
+    "dev": "tsup src/index.ts --format esm --dts --watch",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "elizaos",
+    "plugin",
+    "relayshield",
+    "security",
+    "breach",
+    "sim-swap",
+    "wallet",
+    "phishing",
+    "identity",
+    "threat-intelligence",
+    "x402",
+    "usdc"
+  ],
+  "author": "RelayShield LLC",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nzdsf2-gif/plugin-relayshield.git"
+  },
+  "homepage": "https://relayshield.net",
+  "peerDependencies": {
+    "@elizaos/core": "^1.0.0"
+  },
+  "devDependencies": {
+    "@elizaos/core": "^1.0.0",
+    "@types/node": "^20.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0"
+  },
+  "agentConfig": {
+    "pluginType": "elizaos:plugin:1.0.0",
+    "pluginParameters": {
+      "RELAYSHIELD_API_KEY": {
+        "type": "string",
+        "description": "RapidAPI subscription key — get free tier at rapidapi.com/relayshielduser/api/relayshield-security-intelligence",
+        "required": false,
+        "secret": true
+      },
+      "RELAYSHIELD_X_PAYMENT": {
+        "type": "string",
+        "description": "x402 payment proof for USDC pay-as-you-go on Base or Solana (alternative to API key)",
+        "required": false,
+        "secret": true
+      }
+    }
+  }
+}
