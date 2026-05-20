@@ -74,7 +74,7 @@ export const scanFileAction: Action = {
       await callback?.({
         text: "Please provide a public download URL (http:// or https://) for the file to scan.",
       });
-      return false;
+      return;
     }
     const fileUrl  = urlMatch[0];
     const filename = fileUrl.split("/").pop() ?? "file";
@@ -93,7 +93,7 @@ export const scanFileAction: Action = {
       await callback?.({
         text: `File scan submission failed: ${submit.error ?? "upstream error"}`,
       });
-      return false;
+      return;
     }
 
     const { analysis_id } = submit.data;
@@ -107,7 +107,7 @@ export const scanFileAction: Action = {
           `⏱️ Scan for **${filename}** timed out after 90 seconds. ` +
           `Poll manually: \`GET /v1/result/${analysis_id}\``,
       });
-      return false;
+      return;
     }
 
     const emoji =
@@ -130,6 +130,6 @@ export const scanFileAction: Action = {
         : "");
 
     await callback?.({ text: reply });
-    return true;
+    return;
   },
 };

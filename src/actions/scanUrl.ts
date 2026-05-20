@@ -74,7 +74,7 @@ export const scanUrlAction: Action = {
       await callback?.({
         text: "Please provide a URL starting with http:// or https:// to scan.",
       });
-      return false;
+      return;
     }
     const url = urlMatch[0];
 
@@ -89,7 +89,7 @@ export const scanUrlAction: Action = {
       await callback?.({
         text: `URL scan submission failed: ${submit.error ?? "upstream error"}`,
       });
-      return false;
+      return;
     }
 
     const { analysis_id } = submit.data;
@@ -103,7 +103,7 @@ export const scanUrlAction: Action = {
           `⏱️ Scan for **${url}** timed out after 60 seconds. ` +
           `Poll manually: \`GET /v1/result/${analysis_id}\``,
       });
-      return false;
+      return;
     }
 
     const emoji =
@@ -126,6 +126,6 @@ export const scanUrlAction: Action = {
         : "");
 
     await callback?.({ text: reply });
-    return true;
+    return;
   },
 };

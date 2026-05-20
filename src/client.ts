@@ -3,6 +3,7 @@
  * All calls use HTTPS — API Gateway enforces TLS 1.2+ on every request.
  */
 
+import type { IAgentRuntime } from "@elizaos/core";
 import type { RelayShieldConfig } from "./types.js";
 
 const DEFAULT_API_URL =
@@ -64,12 +65,14 @@ export async function apiGet<T>(
   return json;
 }
 
-export function getConfig(runtime: {
-  getSetting: (key: string) => string | undefined;
-}): RelayShieldConfig {
+export function getConfig(runtime: IAgentRuntime): RelayShieldConfig {
+  const get = (key: string): string | undefined => {
+    const val = runtime.getSetting(key);
+    return val || undefined;
+  };
   return {
-    apiKey:    runtime.getSetting("RELAYSHIELD_API_KEY"),
-    xPayment:  runtime.getSetting("RELAYSHIELD_X_PAYMENT"),
-    apiUrl:    runtime.getSetting("RELAYSHIELD_API_URL"),
+    apiKey:   get("RELAYSHIELD_API_KEY"),
+    xPayment: get("RELAYSHIELD_X_PAYMENT"),
+    apiUrl:   get("RELAYSHIELD_API_URL"),
   };
 }

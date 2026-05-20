@@ -56,7 +56,7 @@ export const checkSimSwapAction: Action = {
       await callback?.({
         text: "Please provide a phone number in E.164 format (e.g. +14155551234) to check for SIM swap.",
       });
-      return false;
+      return;
     }
     // Normalise to E.164
     const phone = "+" + phoneMatch[0].replace(/\D/g, "");
@@ -70,7 +70,7 @@ export const checkSimSwapAction: Action = {
       await callback?.({
         text: `SIM swap check failed: ${result.error ?? "upstream error"}`,
       });
-      return false;
+      return;
     }
 
     const { swapped, swap_timestamp, carrier } = result.data;
@@ -90,6 +90,6 @@ export const checkSimSwapAction: Action = {
     }
 
     await callback?.({ text: reply });
-    return true;
+    return;
   },
 };

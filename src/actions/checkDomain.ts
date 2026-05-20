@@ -72,7 +72,7 @@ export const checkDomainAction: Action = {
       await callback?.({
         text: "Please provide a domain to scan for lookalikes (e.g. acme.com).",
       });
-      return false;
+      return;
     }
     const domain = domainMatch[1].toLowerCase();
 
@@ -85,7 +85,7 @@ export const checkDomainAction: Action = {
       await callback?.({
         text: `Domain scan failed: ${result.error ?? "upstream error"}`,
       });
-      return false;
+      return;
     }
 
     const { lookalikes_found, lookalikes, candidates_checked } = result.data;
@@ -109,6 +109,6 @@ export const checkDomainAction: Action = {
     }
 
     await callback?.({ text: reply });
-    return true;
+    return;
   },
 };

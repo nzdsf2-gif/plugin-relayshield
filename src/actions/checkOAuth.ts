@@ -56,7 +56,7 @@ export const checkOAuthAction: Action = {
       await callback?.({
         text: "Please provide an email address to check for OAuth app exposure.",
       });
-      return false;
+      return;
     }
     const email = emailMatch[0].toLowerCase();
 
@@ -69,7 +69,7 @@ export const checkOAuthAction: Action = {
       await callback?.({
         text: `OAuth watchlist check failed: ${result.error ?? "upstream error"}`,
       });
-      return false;
+      return;
     }
 
     const { matched_count, matched_apps, recommendation } = result.data;
@@ -91,6 +91,6 @@ export const checkOAuthAction: Action = {
     }
 
     await callback?.({ text: reply });
-    return true;
+    return;
   },
 };

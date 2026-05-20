@@ -61,7 +61,7 @@ export const scanWalletAction: Action = {
       await callback?.({
         text: "Please provide a wallet address (EVM 0x... or Solana base58) to scan.",
       });
-      return false;
+      return;
     }
 
     const config  = getConfig(runtime);
@@ -75,7 +75,7 @@ export const scanWalletAction: Action = {
       await callback?.({
         text: `Wallet scan failed: ${result.error ?? "upstream error"}`,
       });
-      return false;
+      return;
     }
 
     const { risk_level, risk_flags, chain: detectedChain } = result.data;
@@ -94,6 +94,6 @@ export const scanWalletAction: Action = {
     }
 
     await callback?.({ text: reply });
-    return true;
+    return;
   },
 };

@@ -4,7 +4,7 @@ import {
   type Memory,
   type State,
   type HandlerCallback,
-  ModelType,
+
   logger,
 } from "@elizaos/core";
 import { apiPost, getConfig } from "../client.js";
@@ -71,7 +71,7 @@ export const checkBreachAction: Action = {
       await callback?.({
         text: "Please provide an email address to check for breaches.",
       });
-      return false;
+      return;
     }
     const email = emailMatch[0].toLowerCase();
 
@@ -84,7 +84,7 @@ export const checkBreachAction: Action = {
       await callback?.({
         text: `Breach check failed: ${result.error ?? "upstream error"}`,
       });
-      return false;
+      return;
     }
 
     const { breach_count, breaches } = result.data;
@@ -105,6 +105,6 @@ export const checkBreachAction: Action = {
     }
 
     await callback?.({ text: reply });
-    return true;
+    return;
   },
 };
