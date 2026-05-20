@@ -1,7 +1,7 @@
 {
   "name": "@relayshield/plugin-relayshield",
-  "version": "0.1.0",
-  "description": "RelayShield identity threat intelligence for ElizaOS agents — breach detection, SIM swap, domain lookalikes, wallet risk, URL/file malware scanning",
+  "version": "0.1.5",
+  "description": "RelayShield identity threat intelligence for ElizaOS agents — breach detection, SIM swap, domain lookalikes, infostealer malware detection, wallet risk, URL/file malware scanning",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -28,6 +28,7 @@
     "security",
     "breach",
     "sim-swap",
+    "infostealer",
     "wallet",
     "phishing",
     "identity",

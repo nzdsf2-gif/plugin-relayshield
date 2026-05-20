@@ -57,6 +57,22 @@ export interface WalletRiskResult {
   metadata: Record<string, unknown>;
 }
 
+export interface InfostealerStealer {
+  date_compromised?: string;
+  computer_name?: string;
+  operating_system?: string;
+  malware_path?: string;
+  total_corporate_services?: number;
+  total_user_services?: number;
+}
+
+export interface InfostealerResult {
+  email: string;
+  found: boolean;
+  stealer_count: number;
+  stealers: InfostealerStealer[];
+}
+
 export interface ScanSubmitResult {
   status: string;
   target: string;
