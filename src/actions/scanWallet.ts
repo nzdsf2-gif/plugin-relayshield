@@ -4,6 +4,7 @@ import {
   type Memory,
   type State,
   type HandlerCallback,
+  type HandlerOptions,
   logger,
 } from "@elizaos/core";
 import { apiPost, getConfig } from "../client.js";
@@ -46,9 +47,10 @@ export const scanWalletAction: Action = {
   handler: async (
     runtime: IAgentRuntime,
     message: Memory,
-    _state: State,
-    _options: Record<string, unknown>,
-    callback?: HandlerCallback
+    _state?: State,
+    _options?: HandlerOptions,
+    callback?: HandlerCallback,
+    _responses?: Memory[]
   ) => {
     const text = message.content.text ?? "";
 
